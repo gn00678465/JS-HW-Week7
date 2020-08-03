@@ -1,13 +1,12 @@
 <template>
   <div>
-    Dashboard
-    <router-view></router-view>
+    Products
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Dashboard',
+  name: 'Products',
   components: {},
   data() {
     return {};

@@ -1,13 +1,12 @@
 <template>
   <div>
-    Dashboard
-    <router-view></router-view>
+    Main
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Dashboard',
+  name: 'Main',
   components: {},
   data() {
     return {};

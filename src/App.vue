@@ -16,7 +16,5 @@ html, body {
   padding: 0;
   background: #EFEFEF;
 }
-#app {
-}
 
 </style>
