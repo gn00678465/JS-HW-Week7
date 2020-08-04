@@ -15,4 +15,13 @@ module.exports = {
   devServer: {
     port: 80,
   },
+  // 設定路徑別名
+  configureWebpack: {
+    resolve: {
+      alias: {
+        components: '@/components',
+        assets: '@/assets',
+      },
+    },
+  },
 };

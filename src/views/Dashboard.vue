@@ -1,6 +1,5 @@
 <template>
-  <div>
-    Dashboard
+  <div class="container">
     <router-view></router-view>
   </div>
 </template>
@@ -18,5 +17,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.container {
+  border: 1px solid #000;
+}
 </style>

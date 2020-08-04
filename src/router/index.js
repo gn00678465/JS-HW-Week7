@@ -15,11 +15,11 @@ const routes = [
   },
   { // 後台
     path: '/admin',
-    name: 'Dashboard',
     component: () => import('../views/Dashboard.vue'),
     children: [
       {
         path: '/',
+        name: 'Dashboard',
         component: () => import('../views/DashBoard/Main.vue'),
       },
       {
