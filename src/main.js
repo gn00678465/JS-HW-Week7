@@ -15,6 +15,7 @@ import './assets/plugin/Fontaweosme';
 import './assets/plugin/VeeValidate';
 import './assets/plugin/vueLoadingOverlay';
 import './assets/plugin/VueToastification';
+import './assets/icons/index';
 // filter
 import './assets/_filter';
 
