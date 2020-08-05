@@ -5,16 +5,16 @@
         <div class="container">
           <div class="row">
             <div class="col-12">
-              <!-- <InputUpload ref="file" @submit="uploadFile"/> -->
-            </div>
-            <hr>
-            <div class="col-12">
               <InputField label="圖片網址 - 1" rules="required" placeholder="請輸入圖片網址"
               v-model="inputTemp.imageUrl[0]"/>
             </div>
             <div class="col-12" v-for="i in (inputTemp.imageUrl.length)" :key="i">
               <InputField :label="`圖片網址 - ${i + 1}`"
               v-model="inputTemp.imageUrl[i]"/>
+            </div>
+            <hr>
+            <div class="col-12">
+              <InputUpload ref="file"/>
             </div>
           </div>
         </div>
@@ -55,8 +55,10 @@
               rules="required" v-model="inputTemp.content"/>
             </div>
             <div class="col-12">
-              <span class="label">商品說明：</span>
+              <!-- <span class="label">商品說明：</span> -->
               <!-- <vue-editor v-model="inputTemp.description" /> -->
+              <InputField type="textarea" label="產品說明" placeholder="請輸入產品說明"
+              rules="required" v-model="inputTemp.description"/>
             </div>
           </div>
         </div>
@@ -66,9 +68,11 @@
 </template>
 
 <script>
+import InputUpload from 'components/InputUpload.vue';
+
 export default {
   name: 'ProductEdit',
-  components: {},
+  components: { InputUpload },
   data() {
     return {
       inputTemp: {

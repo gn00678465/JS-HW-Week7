@@ -1,5 +1,12 @@
 <template>
-  <div class="container-fluid">
+  <div class="container-fluid vld-parent">
+    <loading :active.sync="isLoading"
+      :can-cancel="true" background-color="#333"
+      :is-full-page="true">
+      <template slot="default">
+        <load/>
+      </template>
+      </loading>
     <div class="row">
       <div class="col">
         <div class="dashboard">
@@ -20,23 +27,7 @@
                     </span>
                   </div>
                 </div>
-                <div v-scrollbar class="table-body vld-parent">
-                  <loading :active.sync="isLoading"
-                    :can-cancel="true"
-                    :is-full-page="false"></loading>
-                  <!-- <div class="tr" v-for="i in 12" :key="i">
-                    <div class="td">{{products[0].category}}</div>
-                    <div class="td">{{products[0].title}}</div>
-                    <div class="td">{{products[0].origin_price | Currency | Dollar}}</div>
-                    <div class="td">{{products[0].price | Currency | Dollar}}</div>
-                    <div class="td">
-                      <toggle :prodId="products[0].id.substr(0, 5)" :disabled="true"
-                      :checked="products[0].enabled"/>
-                    </div>
-                    <div class="td">
-                      <BtnGroup :btns="btns" v-on="$listeners" :border="true" btnSize="md"/>
-                    </div>
-                  </div> -->
+                <div v-scrollbar class="table-body">
                   <item :prod="products[0]"/>
                 </div>
               </div>
@@ -51,10 +42,11 @@
 
 <script>
 import item from 'components/_ProductItem.vue';
+import load from 'components/Loading.vue';
 
 export default {
   name: 'Products',
-  components: { item },
+  components: { item, load },
   data() {
     return {
       isLoading: false,
