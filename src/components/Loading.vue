@@ -1,9 +1,5 @@
 <template>
-  <div class="loader">
-    <div class="inner one"></div>
-    <div class="inner two"></div>
-    <div class="inner three"></div>
-  </div>
+  <div class="loader">Loading</div>
 </template>
 
 <script>
@@ -20,68 +16,54 @@ export default {
 
 <style lang="scss" scoped>
 .loader {
-  // position: absolute;
-  // top: calc(50% - 32px);
-  // left: calc(50% - 32px);
-  width: 64px;
-  height: 64px;
-  border-radius: 50%;
-  perspective: 800px;
+  width: 150px;
+  height: 150px;
+  line-height: 150px;
+  margin: 100px auto;
+  position: relative;
+  box-sizing: border-box;
+  text-align: center;
+  z-index: 0;
+  text-transform: uppercase;
+  color: #fff;
 }
 
-.inner {
-  position: absolute;
+.loader:before,
+.loader:after {
+  opacity: 0;
   box-sizing: border-box;
+  content: "\0020";
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  border-radius: 50%;
+  border-radius: 100px;
+  border: 5px solid #fff;
+  box-shadow: 0 0 50px #fff, inset 0 0 50px #fff;
 }
 
-.inner.one {
-  left: 0%;
-  top: 0%;
-  animation: rotate-one 1s linear infinite;
-  border-bottom: 4px solid #EFEFFA;
+.loader:after {
+  z-index: 1;
+  -webkit-animation: gogoloader 2s infinite 1s;
 }
 
-.inner.two {
-  right: 0%;
-  top: 0%;
-  animation: rotate-two 1s linear infinite;
-  border-right: 4px solid #EFEFFA;
+.loader:before {
+  z-index: 2;
+  -webkit-animation: gogoloader 2s infinite;
 }
 
-.inner.three {
-  right: 0%;
-  bottom: 0%;
-  animation: rotate-three 1s linear infinite;
-  border-top: 4px solid #EFEFFA;
-}
-
-@keyframes rotate-one {
+@-webkit-keyframes gogoloader {
   0% {
-    transform: rotateX(35deg) rotateY(-45deg) rotateZ(0deg);
+    -webkit-transform: scale(0);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
   }
   100% {
-    transform: rotateX(35deg) rotateY(-45deg) rotateZ(360deg);
-  }
-}
-
-@keyframes rotate-two {
-  0% {
-    transform: rotateX(50deg) rotateY(10deg) rotateZ(0deg);
-  }
-  100% {
-    transform: rotateX(50deg) rotateY(10deg) rotateZ(360deg);
-  }
-}
-
-@keyframes rotate-three {
-  0% {
-    transform: rotateX(35deg) rotateY(55deg) rotateZ(0deg);
-  }
-  100% {
-    transform: rotateX(35deg) rotateY(55deg) rotateZ(360deg);
+    -webkit-transform: scale(1);
+    opacity: 0;
   }
 }
 </style>

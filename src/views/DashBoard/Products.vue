@@ -1,11 +1,9 @@
 <template>
   <div class="container-fluid vld-parent">
     <loading :active.sync="isLoading"
-      :can-cancel="true" background-color="#333"
+      :can-cancel="true" background-color="#555"
       :is-full-page="true">
-      <template slot="default">
-        <load/>
-      </template>
+        <load slot="default"/>
       </loading>
     <div class="row">
       <div class="col">
