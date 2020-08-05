@@ -15,7 +15,7 @@
                     <span class="th">優惠碼</span>
                     <span class="th">折扣(%)</span>
                     <span class="th">是否啟用</span>
-                    <span class="th"><font-awesome-icon class="icon" :icon="['fas', 'cog']" />
+                    <span class="th"><font-awesome-icon class="icon" :icon="['fas', 'user-cog']" />
                     </span>
                   </div>
                 </div>

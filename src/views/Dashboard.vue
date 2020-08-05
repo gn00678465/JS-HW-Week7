@@ -31,12 +31,12 @@ export default {
         {
           name: '產品列表',
           path: '/admin/products',
-          icon: 'cart',
+          icon: 'boxes',
         },
         {
           name: '優惠卷',
           path: '/admin/coupons',
-          icon: 'coupon',
+          icon: 'percent',
         },
         {
           name: '訂單列表',

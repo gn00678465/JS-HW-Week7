@@ -16,7 +16,7 @@
                     <span class="th">原價</span>
                     <span class="th">售價</span>
                     <span class="th">是否啟用</span>
-                    <span class="th"><font-awesome-icon class="icon" :icon="['fas', 'cog']" />
+                    <span class="th"><font-awesome-icon class="icon" :icon="['fas', 'user-cog']" />
                     </span>
                   </div>
                 </div>
