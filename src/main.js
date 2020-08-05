@@ -2,6 +2,7 @@
 import Pagination from 'components/Pagination.vue';
 import ToggleSwitch from 'components/ToggleSwitch.vue';
 import BtnGroup from 'components/BtnGroup.vue';
+import Modal from 'components/Modal.vue';
 import Vue from 'vue';
 // normalize
 import 'normalize.css';
@@ -35,6 +36,7 @@ Vue.use(ScrollBar);
 Vue.component('pagination', Pagination);
 Vue.component('toggle', ToggleSwitch);
 Vue.component('BtnGroup', BtnGroup);
+Vue.component('Modal', Modal);
 
 Vue.config.productionTip = false;
 
