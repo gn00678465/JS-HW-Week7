@@ -11,8 +11,9 @@
 *::after {
   box-sizing: border-box;
 }
-h1{
+h1, tr, th, td{
   margin: 0;
+  padding: 0;
 }
 ul{
   margin: 0;
@@ -21,6 +22,12 @@ ul{
 }
 a{
   text-decoration: none;
+}
+table { border-collapse: collapse; border-spacing: 0; }
+
+// colors
+:root {
+  --info: #379BDE;
 }
 
 // body

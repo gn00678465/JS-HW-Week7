@@ -3,7 +3,7 @@
     <nav class="nav">
       <div class="nav__logo" :class="{'no-toggler': !showToggler}">
         <div class="nav__toggler" v-if="showToggler">三</div>
-        <div class="nav__title">Dashboard</div>
+        <div class="nav__title">Hi! 管理員!</div>
       </div>
       <ul class="nav__list">
         <router-link :to="link.path" class="nav__item" tag="li"
@@ -59,7 +59,8 @@ $dark-bg: #12192C;
 $dark-sub: #B6CEFC;
 $dark-hr: rgba(255,255,255,0.7);
 // light
-$light-hover: #f44336;
+$light-actived: #f44336;
+$light-hover: #F7F7F7;
 $light-bg: $white-text;
 $light-sub: #B6CEFC;
 $light-text: #3c4858;
@@ -194,8 +195,14 @@ $z-fixed: 100;
     &__title {
       color: $light-text;
     }
-    &__item:hover, &__item.actived {
+    &__item:hover {
       background-color: $light-hover;
+      .nav__text, .nav__icon {
+        color: $light-text;
+      }
+    }
+    &__item.actived {
+      background-color: $light-actived;
       .nav__text, .nav__icon {
         color: $white-text;
       }

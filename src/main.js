@@ -1,3 +1,7 @@
+// components
+import Pagination from 'components/Pagination.vue';
+import ToggleSwitch from 'components/ToggleSwitch.vue';
+import BtnGroup from 'components/BtnGroup.vue';
 import Vue from 'vue';
 // normalize
 import 'normalize.css';
@@ -23,6 +27,10 @@ import './assets/_filter';
 Vue.use(VueMeta);
 // axios
 Vue.use(VueAxios, axios);
+// global components
+Vue.component('pagination', Pagination);
+Vue.component('toggle', ToggleSwitch);
+Vue.component('BtnGroup', BtnGroup);
 
 Vue.config.productionTip = false;
 

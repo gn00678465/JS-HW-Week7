@@ -8,10 +8,8 @@
           <span>登出</span>
         </a>
       </header>
-      <SideBar ref="sidbar" :links="navLink" navStyle="dark"/>
-      <div class="container-fluid" style="margin-left: 240px; margin-top: 70px">
-        <router-view></router-view>
-      </div>
+      <SideBar ref="sidbar" :links="navLink" />
+      <router-view style="margin-left: 240px; margin-top: 70px"></router-view>
     </div>
   </div>
 </template>
@@ -68,7 +66,7 @@ export default {
   top: 0;
   left: 0;
   right: 0;
-  padding: 1rem 1.5rem;
+  padding: 1rem 1rem;
   background: transparent;
   display: flex;
   justify-content: space-between;
