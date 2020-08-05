@@ -9,21 +9,22 @@
           </header>
           <div class="prod__body">
               <div class="table">
-                <div class="table-header">
+                <div class="table-head">
                   <div class="tr">
-                    <div class="th">分類</div>
-                    <div class="th">產品名稱</div>
-                    <div class="th">原價</div>
-                    <div class="th">售價</div>
-                    <div class="th">是否啟用</div>
-                    <div class="th"><font-awesome-icon class="icon" :icon="['fas', 'cog']" /></div>
+                    <span class="th">分類</span>
+                    <span class="th">產品名稱</span>
+                    <span class="th">原價</span>
+                    <span class="th">售價</span>
+                    <span class="th">是否啟用</span>
+                    <span class="th"><font-awesome-icon class="icon" :icon="['fas', 'cog']" />
+                    </span>
                   </div>
                 </div>
-                <div class="table-body vld-parent">
+                <div v-scrollbar class="table-body vld-parent">
                   <loading :active.sync="isLoading"
                     :can-cancel="true"
                     :is-full-page="false"></loading>
-                  <div class="tr" v-for="i in 20" :key="i">
+                  <!-- <div class="tr" v-for="i in 12" :key="i">
                     <div class="td">{{products[0].category}}</div>
                     <div class="td">{{products[0].title}}</div>
                     <div class="td">{{products[0].origin_price | Currency | Dollar}}</div>
@@ -35,7 +36,8 @@
                     <div class="td">
                       <BtnGroup :btns="btns" v-on="$listeners" :border="true" btnSize="md"/>
                     </div>
-                  </div>
+                  </div> -->
+                  <item :prod="products[0]"/>
                 </div>
               </div>
             <pagination :total_pages="total" :page="page" />
@@ -47,10 +49,11 @@
 </template>
 
 <script>
+import item from 'components/_ProductsItem.vue';
 
 export default {
   name: 'Products',
-  components: {},
+  components: { item },
   data() {
     return {
       isLoading: false,
@@ -77,22 +80,6 @@ export default {
         action: 'new',
         size: 'xl',
       }],
-      btns: [
-        {
-          class: 'secondary',
-          outline: true,
-          content: '',
-          icon: 'marker',
-          action: 'edit',
-        },
-        {
-          class: 'error',
-          outline: true,
-          content: '',
-          icon: 'trash-alt',
-          action: 'del',
-        },
-      ],
     };
   },
   methods: {
@@ -163,11 +150,12 @@ $thead: #c9dff0;
         padding: 10px 0;
         color: #555;
       }
+      &-head {
+        border-bottom: 2px solid #eee;
+      }
       &-body {
-        min-height: 200px;
+        min-height: 100px;
         max-height: 600px;
-        overflow-x: hidden;
-        overflow-y: scroll;
         .tr:nth-child(odd) {
         background: rgba(230,230,230,0.2);
         }
@@ -178,10 +166,12 @@ $thead: #c9dff0;
 
 $basis: (15% 40% 12% 12% 15% 15%);
 
-@for $i from 1 through length($basis) {
-  .th, .td {
-    &:nth-child(#{$i}) {
+.table {
+  @for $i from 1 through length($basis) {
+    &-head, &-body {
+      span:nth-of-type(#{$i}) {
       flex-basis: nth($basis, $i);
+      }
     }
   }
 }

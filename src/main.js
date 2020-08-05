@@ -10,6 +10,8 @@ import VueMeta from 'vue-meta';
 // axios
 import axios from 'axios';
 import VueAxios from 'vue-axios';
+// scrollbar
+import ScrollBar from '@morioh/v-smooth-scrollbar';
 // Vue APP
 import App from './App.vue';
 import router from './router';
@@ -27,6 +29,8 @@ import './assets/_filter';
 Vue.use(VueMeta);
 // axios
 Vue.use(VueAxios, axios);
+// scrollbar
+Vue.use(ScrollBar);
 // global components
 Vue.component('pagination', Pagination);
 Vue.component('toggle', ToggleSwitch);
