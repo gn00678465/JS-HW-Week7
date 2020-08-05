@@ -131,8 +131,9 @@ $secondary-color: #1d1f20;
     &:first-child {
       margin-right: 1rem;
       .page__link {
+        transform: scaleX(-1);
         &:after {
-          content: "⮜";
+          content: "➤";
         }
       }
     }
@@ -140,7 +141,7 @@ $secondary-color: #1d1f20;
       margin-left: 1rem;
       .page__link {
         &:after {
-          content: "⮞";
+          content: "➤";
         }
       }
     }
