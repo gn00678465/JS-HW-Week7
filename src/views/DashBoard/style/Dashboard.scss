@@ -1,6 +1,6 @@
 // variable
 $main-color: #f0f0f0;
-$thead: #c9dff0;
+$thead: #5498D7;
 
 .dashboard {
   margin-top: 2rem;
@@ -44,7 +44,9 @@ $thead: #c9dff0;
         flex-grow: 1;
         display: inline-block;
         text-align: center;
-        background: $thead;
+        // background: $thead;
+        color: #7A23F9;
+        font-size: 1.1rem;
         font-weight: bold;
         padding: 0.8rem 0;
       }

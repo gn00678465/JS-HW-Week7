@@ -23,7 +23,7 @@
                   <loading :active.sync="isLoading"
                     :can-cancel="true"
                     :is-full-page="false"></loading>
-                  <item :prod="products[0]"/>
+                  <item :prod="products[0]" @btnEmit="BtnClick"/>
                 </div>
               </div>
             <pagination :total_pages="total" :page="page" />
@@ -31,6 +31,8 @@
         </div>
       </div>
     </div>
+    <Modal ref="modal" />
+    <Dialog ref="dialog" @dialogEmit="DelProd">刪除此優惠卷?</Dialog>
   </div>
 </template>
 
@@ -69,8 +71,24 @@ export default {
     };
   },
   methods: {
-    BtnClick(data) {
-      console.log(data);
+    BtnClick(action) {
+      this[`${action}Handler`]();
+    },
+    newHandler() {
+      this.$refs.modal.ModalShow = true;
+      this.$refs.modal.ModalTitle = '新增優惠卷';
+      this.$refs.modal.body = 'coupon';
+    },
+    editHandler() {
+      this.$refs.modal.ModalShow = true;
+      this.$refs.modal.ModalTitle = '編輯優惠卷';
+      this.$refs.modal.body = 'coupon';
+    },
+    delHandler() {
+      this.$refs.dialog.isVisible = true;
+    },
+    DelProd() {
+      console.log('DelProd');
     },
   },
   computed: {},

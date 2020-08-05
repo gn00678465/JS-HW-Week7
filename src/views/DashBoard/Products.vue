@@ -26,7 +26,7 @@
                   </div>
                 </div>
                 <div v-scrollbar class="table-body">
-                  <item :prod="products[0]"/>
+                  <item :prod="products[0]" @btnEmit="BtnClick"/>
                 </div>
               </div>
             <pagination :total_pages="total" :page="page" />
@@ -34,7 +34,8 @@
         </div>
       </div>
     </div>
-    <Modal ref="modal"/>
+    <Modal ref="modal" size="xl"/>
+    <Dialog ref="dialog" @dialogEmit="DelProd">刪除此產品?</Dialog>
   </div>
 </template>
 
@@ -80,6 +81,18 @@ export default {
     newHandler() {
       this.$refs.modal.ModalShow = true;
       this.$refs.modal.ModalTitle = '新增產品';
+      this.$refs.modal.body = 'Product';
+    },
+    editHandler() {
+      this.$refs.modal.ModalShow = true;
+      this.$refs.modal.ModalTitle = '編輯產品';
+      this.$refs.modal.body = 'Product';
+    },
+    delHandler() {
+      this.$refs.dialog.isVisible = true;
+    },
+    DelProd() {
+      console.log('DelProd');
     },
   },
   computed: {},

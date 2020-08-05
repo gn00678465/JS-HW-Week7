@@ -1,7 +1,7 @@
 <template>
   <transition name="modal" v-if="ModalShow">
     <div class="modal">
-      <div class="modal__container modal__wrapper-xl">
+      <div class="modal__container" :class="`modal__wrapper-${size}`">
         <!-- header -->
         <header class="modal__header">
           <slot name="header">
@@ -24,17 +24,25 @@
 </template>
 
 <script>
-import ProductInput from 'components/_ProductEdit.vue';
+import Product from 'components/_ProductEdit.vue';
+import file from 'components/InputUpload.vue';
+import coupon from 'components/_CouponEdit.vue';
 
 export default {
   name: 'Modal',
   mixins: [],
-  components: { ProductInput },
+  components: { Product, file, coupon },
+  props: {
+    size: {
+      type: String,
+      default: 'md',
+    },
+  },
   data() {
     return {
       ModalShow: false,
       ModalTitle: '',
-      body: 'ProductInput',
+      body: '',
       btnCheck: [
         {
           class: 'primary',
@@ -72,16 +80,18 @@ export default {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100vh;
+  right: 0;
+  bottom: 0;
   background-color: rgba(0, 0, 0, 0.5);
   transition: opacity 0.8s ease;
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow-y: scroll;
   .modal {
     &__container {
       width: 100%;
+      height: auto;
       background-color: #fff;
       border-radius: 5px;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
@@ -118,32 +128,13 @@ export default {
   margin-right: 1.5rem;
 }
 
-// file
-.form-file {
-  box-sizing: border-box;
-  label {
-    width: 100%;
-    display: flex;
-    flex-flow: row nowrap;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.2rem;
-    padding: 0.75rem 0.5rem;
-    border-radius: 5px;
-    border: 1px solid #ced4da;
-    color: #495057;
-    cursor: pointer;
-  }
-  input[type="file"] {
-    display: none;
-  }
-}
-
 // size
 .modal__wrapper {
-  max-width: 500px;
   &-sm {
     max-width: 300px;
+  }
+  &-md {
+    max-width: 500px;
   }
   &-lg {
     max-width: 800px;

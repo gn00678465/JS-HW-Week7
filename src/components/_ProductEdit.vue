@@ -5,11 +5,11 @@
         <div class="container">
           <div class="row">
             <div class="col-12">
-              <InputField label="圖片網址 - 1" rules="required" placeholder="請輸入圖片網址"
+              <InputField label="圖片網址" rules="required" placeholder="請輸入圖片網址"
               v-model="inputTemp.imageUrl[0]"/>
             </div>
-            <div class="col-12" v-for="i in (inputTemp.imageUrl.length)" :key="i">
-              <InputField :label="`圖片網址 - ${i + 1}`"
+            <div class="col-12" v-for="i in imgUrlLength" :key="i">
+              <InputField :label="`圖片網址 - ${i}`"
               v-model="inputTemp.imageUrl[i]"/>
             </div>
             <hr>
@@ -81,7 +81,11 @@ export default {
     };
   },
   methods: {},
-  computed: {},
+  computed: {
+    imgUrlLength() {
+      return this.inputTemp.imageUrl.length <= 3 ? this.inputTemp.imageUrl.length : 3;
+    },
+  },
 };
 </script>
 

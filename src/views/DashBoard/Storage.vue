@@ -31,6 +31,7 @@
         </div>
       </div>
     </div>
+    <Modal ref="modal"/>
   </div>
 </template>
 

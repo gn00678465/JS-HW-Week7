@@ -31,7 +31,7 @@ export default {
       isLoading: false,
       btns: [
         {
-          class: 'secondary',
+          class: 'info',
           outline: true,
           content: '',
           icon: 'marker',

@@ -54,7 +54,7 @@ $colors: (
   default: #434a54,
   primary: #0073DE,
   secondary: #804EFD,
-  info: #4fc1e9,
+  info: #019EC8,
   success: #8cc152,
   error: #DD0002,
   warning: #f6bb42,
