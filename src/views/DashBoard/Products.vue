@@ -2,12 +2,12 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col">
-        <div class="prod">
-          <header class="prod__header">
+        <div class="dashboard">
+          <header class="header">
             <div class="title">產品管理列表</div>
             <BtnGroup class="newBtn" :btns="btn" @btnEmit="BtnClick"/>
           </header>
-          <div class="prod__body">
+          <main class="body">
               <div class="table">
                 <div class="table-head">
                   <div class="tr">
@@ -41,7 +41,7 @@
                 </div>
               </div>
             <pagination :total_pages="total" :page="page" />
-          </div>
+          </main>
         </div>
       </div>
     </div>
@@ -49,7 +49,7 @@
 </template>
 
 <script>
-import item from 'components/_ProductsItem.vue';
+import item from 'components/_ProductItem.vue';
 
 export default {
   name: 'Products',
@@ -92,88 +92,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
-// variable
-$main-color: #f0f0f0;
-$thead: #c9dff0;
-
-.prod {
-  margin-top: 2rem;
-  padding: 10px 1.5rem;
-  background: #fff;
-  border-radius: 0.2rem;
-  box-shadow: 0 1px 4px 0 rgba(0,0,0,.14);
-  &__header {
-    display: flex;
-    flex-flow: row nowrap;
-    align-items: center;
-    margin-top: -1.5rem;
-    .title {
-      padding: 1rem;
-      border-radius: 3px;
-      background: linear-gradient(60deg,#ef5350,#e53935);
-      flex: 1 0 0;
-      display: inline-block;
-      text-align: center;
-      font-size: 1.2rem;
-      font-weight: 600;
-      color: #fff;
-    }
-    .newBtn {
-      margin-left: 1.5rem;
-    }
-  }
-  &__body {
-    margin-top: 1.5rem;
-    .table {
-      width: 100%;
-      margin-bottom: 1rem;
-      padding: 0 2rem;
-      height: 100%;
-      .tr {
-        display: flex;
-        flex-flow: row nowrap;
-        align-items: center;
-      }
-      .th {
-        flex-grow: 1;
-        display: inline-block;
-        text-align: center;
-        background: $thead;
-        font-weight: bold;
-        padding: 0.8rem 0;
-      }
-      .td {
-        flex-grow: 1;
-        display: inline-block;
-        text-align: center;
-        padding: 10px 0;
-        color: #555;
-      }
-      &-head {
-        border-bottom: 2px solid #eee;
-      }
-      &-body {
-        min-height: 100px;
-        max-height: 600px;
-        .tr:nth-child(odd) {
-        background: rgba(230,230,230,0.2);
-        }
-      }
-      }
-  }
-}
+@import './style/Dashboard.scss';
 
 $basis: (15% 40% 12% 12% 15% 15%);
 
 .table {
   @for $i from 1 through length($basis) {
     &-head, &-body {
-      span:nth-of-type(#{$i}) {
+      ::v-deep span:nth-of-type(#{$i}) {
       flex-basis: nth($basis, $i);
       }
     }
   }
 }
-
 </style>

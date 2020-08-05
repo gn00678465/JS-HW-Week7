@@ -5,8 +5,7 @@
       :is-full-page="false"></loading>
     <span class="td">{{prod.category}}</span>
     <span class="td">{{prod.title}}</span>
-    <span class="td">{{prod.origin_price | Currency | Dollar}}</span>
-    <span class="td">{{prod.price | Currency | Dollar}}</span>
+    <span class="td">{{prod.price}} %</span>
     <span class="td">
       <toggle :prodId="prod.id.substr(0, 5)" :disabled="true"
       :checked="prod.enabled"/>
@@ -20,7 +19,7 @@
 <script>
 
 export default {
-  name: 'ProductsItem',
+  name: 'CouponItem',
   props: {
     prod: {
       type: Object,
@@ -63,13 +62,5 @@ export default {
   text-align: center;
   padding: 10px 0;
   color: #555;
-}
-
-$basis: (15% 40% 12% 12% 15% 15%);
-
-@for $i from 1 through length($basis) {
-  span:nth-of-type(#{$i}) {
-  flex-basis: nth($basis, $i);
-  }
 }
 </style>
