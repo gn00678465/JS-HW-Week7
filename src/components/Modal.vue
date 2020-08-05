@@ -1,20 +1,22 @@
 <template>
-  <transition name="modal" v-if="showModal">
+  <transition name="modal" v-if="ModalShow">
     <div class="modal">
       <div class="modal__container modal__wrapper-xl">
         <!-- header -->
-        <h4 class="modal__header">
+        <header class="modal__header">
           <slot name="header">
-            {{ modalTitle }}
+            {{ ModalTitle }}
           </slot>
           <span class="times" @click.prevent="closeModal">&times;</span>
-        </h4>
+        </header>
         <!-- body -->
         <div class="modal__body">
+          <component :is="body"></component>
         </div>
         <!-- footer -->
         <div class="modal__footer">
-          <BtnGroup :btns="btns" @emitHandler="actionHandler"/>
+          <BtnGroup class="mr-3" :btns="btnCheck"/>
+          <BtnGroup :btns="cancleBtn" @btnEmit="closeModal"/>
         </div>
       </div>
     </div>
@@ -22,20 +24,18 @@
 </template>
 
 <script>
+import ProductInput from 'components/_ProductEdit.vue';
 
 export default {
   name: 'Modal',
   mixins: [],
-  components: {
-  },
+  components: { ProductInput },
   data() {
     return {
-      showModal: false,
-      modalTitle: '',
-      inputTemp: {
-        imageUrl: [],
-      },
-      btns: [
+      ModalShow: false,
+      ModalTitle: '',
+      body: 'ProductInput',
+      btnCheck: [
         {
           class: 'primary',
           outline: true,
@@ -43,6 +43,8 @@ export default {
           icon: '',
           action: 'checked',
         },
+      ],
+      cancleBtn: [
         {
           class: 'error',
           outline: true,
@@ -56,7 +58,7 @@ export default {
   },
   methods: {
     closeModal() {
-      this.showModal = false;
+      this.ModalShow = false;
     },
   },
   computed: {
@@ -65,14 +67,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import './../assets/_sass/sass.scss';
-
-.box {
-  background: #000;
-  color: #fff;
-}
-
 .modal {
+  z-index: 999;
   position: fixed;
   top: 0;
   left: 0;
@@ -92,7 +88,7 @@ export default {
       transition: all 0.8s ease;
     }
     &__header {
-      padding: 1rem;
+      padding: 1.2rem;
       font-size: 1.8rem;
       border-bottom: 1px solid #dee2e6;
       display: flex;
@@ -107,10 +103,6 @@ export default {
     }
     &__body {
       padding: 1rem;
-      .label {
-        display: inline-block;
-        margin-bottom: 0.5rem;
-      }
     }
     &__footer {
       padding: 1rem;
@@ -122,14 +114,8 @@ export default {
   }
 }
 
-hr {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-  margin-left: 15px;
-  margin-right: 15px;
-  border: 0;
-  border-top: 1px solid rgba(0,0,0,.1);
-  width: 100%;
+.mr-3 {
+  margin-right: 1.5rem;
 }
 
 // file

@@ -3,6 +3,7 @@ import Pagination from 'components/Pagination.vue';
 import ToggleSwitch from 'components/ToggleSwitch.vue';
 import BtnGroup from 'components/BtnGroup.vue';
 import Modal from 'components/Modal.vue';
+import InputField from 'components/InputField.vue';
 import Vue from 'vue';
 // normalize
 import 'normalize.css';
@@ -37,6 +38,7 @@ Vue.component('pagination', Pagination);
 Vue.component('toggle', ToggleSwitch);
 Vue.component('BtnGroup', BtnGroup);
 Vue.component('Modal', Modal);
+Vue.component('InputField', InputField);
 
 Vue.config.productionTip = false;
 

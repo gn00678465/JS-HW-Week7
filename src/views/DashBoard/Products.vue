@@ -45,6 +45,7 @@
         </div>
       </div>
     </div>
+    <Modal ref="modal"/>
   </div>
 </template>
 
@@ -83,8 +84,12 @@ export default {
     };
   },
   methods: {
-    BtnClick(data) {
-      console.log(data);
+    BtnClick(action) {
+      this[`${action}Handler`]();
+    },
+    newHandler() {
+      this.$refs.modal.ModalShow = true;
+      this.$refs.modal.ModalTitle = '新增產品';
     },
   },
   computed: {},
