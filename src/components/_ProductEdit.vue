@@ -5,7 +5,7 @@
         <div class="container">
           <div class="row">
             <div class="col-12">
-              <InputField label="圖片網址" rules="required" placeholder="請輸入圖片網址"
+              <InputField label="圖片網址" rules="required" placeholder="請輸入圖片網址" :attrs="inputSet"
               v-model="inputTemp.imageUrl[0]"/>
             </div>
             <div class="col-12" v-for="i in imgUrlLength" :key="i">
@@ -23,7 +23,7 @@
         <div class="container">
           <div class="row">
             <div class="col-10">
-              <InputField label="標題" placeholder="請輸入標題" rules="required"
+              <InputField label="標題" :attrs="inputSet"
               v-model="inputTemp.title"/>
             </div>
             <div class="col-2">
@@ -32,32 +32,32 @@
               v-model="inputTemp.enabled"/>
             </div>
             <div class="col-6">
-              <InputField label="分類" placeholder="請輸入分類" rules="required"
+              <InputField label="分類" :attrs="inputSet"
               v-model="inputTemp.category"/>
             </div>
             <div class="col-6">
-              <InputField label="單位" placeholder="請輸入單位" rules="required"
+              <InputField label="單位" :attrs="inputSet"
               v-model="inputTemp.unit"/>
             </div>
             <div class="col-6">
-              <InputField label="原價" placeholder="請輸入原價" :type="'number'"
+              <InputField label="原價" :attrs="inputSet"
               rules="required"
               v-model.number="inputTemp.origin_price"/>
             </div>
             <div class="col-6">
-              <InputField label="售價" placeholder="請輸入售價" :type="'number'"
+              <InputField label="售價" :attrs="inputSet"
               rules="required"
               v-model.number="inputTemp.price"/>
             </div>
             <hr>
             <div class="col-12">
-              <InputField type="textarea" label="產品描述" placeholder="請輸入產品描述"
+              <InputField type="textarea" label="產品描述" :attrs="inputSet"
               rules="required" v-model="inputTemp.content"/>
             </div>
             <div class="col-12">
               <!-- <span class="label">商品說明：</span> -->
               <!-- <vue-editor v-model="inputTemp.description" /> -->
-              <InputField type="textarea" label="產品說明" placeholder="請輸入產品說明"
+              <InputField type="textarea" label="產品說明" :attrs="inputSet"
               rules="required" v-model="inputTemp.description"/>
             </div>
           </div>
@@ -77,6 +77,48 @@ export default {
     return {
       inputTemp: {
         imageUrl: [],
+      },
+      inputSet: {
+        標題: {
+          rules: 'required',
+          placeholder: '請輸入標題',
+          type: 'text',
+        },
+        分類: {
+          rules: 'required',
+          placeholder: '請輸入分類',
+          type: 'text',
+        },
+        單位: {
+          rules: 'required',
+          placeholder: '請輸入單位',
+          type: 'text',
+        },
+        原價: {
+          rules: 'required',
+          placeholder: '請輸入原價',
+          type: 'number',
+        },
+        售價: {
+          rules: 'required',
+          placeholder: '請輸入售價',
+          type: 'number',
+        },
+        產品描述: {
+          rules: 'required',
+          placeholder: '請輸入產品描述',
+          type: 'textarea',
+        },
+        產品說明: {
+          rules: 'required',
+          placeholder: '請輸入產品說明',
+          type: 'textarea',
+        },
+        圖片網址: {
+          rules: 'required',
+          placeholder: '請輸入圖片網址',
+          type: 'text',
+        },
       },
     };
   },

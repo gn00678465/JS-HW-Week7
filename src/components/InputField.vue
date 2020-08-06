@@ -1,15 +1,15 @@
 <template>
   <validation-provider
       tag="div"
-      :rules="rules"
+      :rules="Attr.rules"
       class="form-group"
       v-slot="{ errors, classes }"
     >
     <label>{{ label }}：</label>
-    <input class="form-control" v-if="typeHandler" :type="type" :placeholder="placeholder"
+    <input class="form-control" v-if="typeCheck" :type="Attr.type" :placeholder="Attr.placeholder"
     :name="label" :value="value" @input="$emit('input', $event.target.value)" :class="classes"/>
     <textarea class="form-control" v-else :name="label" id="" :rows="rows" :class="classes"
-    :placeholder="placeholder" :value="value" @input="$emit('input', $event.target.value)">
+    :placeholder="Attr.placeholder" :value="value" @input="$emit('input', $event.target.value)">
     </textarea>
     <!-- 錯誤訊息 -->
     <span class="error">{{ errors[0] }}</span>
@@ -22,16 +22,11 @@ export default {
   props: {
     label: {
       type: String,
+      required: true,
     },
-    type: {
-      type: String,
-      default: 'text',
-    },
-    placeholder: {
-      type: String,
-    },
-    rules: {
-      default: '',
+    attrs: {
+      type: Object,
+      required: true,
     },
     rows: {
       type: Number,
@@ -43,8 +38,11 @@ export default {
     return {};
   },
   computed: {
-    typeHandler() {
-      return !(this.type === 'textarea');
+    Attr() {
+      return this.attrs[this.label];
+    },
+    typeCheck() {
+      return !(this.Attr.type === 'textarea');
     },
   },
 };
