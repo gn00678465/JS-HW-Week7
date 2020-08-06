@@ -14,11 +14,11 @@ const routes = [
     component: () => import('../views/DashBoard/Login.vue'),
   },
   { // 後台
-    path: '/admin',
+    path: '/:path',
     component: () => import('../views/Dashboard.vue'),
     children: [
       {
-        path: '/',
+        path: '/admin',
         name: 'Dashboard',
         component: () => import('../views/DashBoard/Main.vue'),
       },

@@ -6,8 +6,13 @@
         <div class="nav__title">Hi! 管理員!</div>
       </div>
       <ul class="nav__list">
-        <router-link :to="link.path" class="nav__item" tag="li"
-        v-for="link in links" :key="link.path" active-class="actived" exact>
+        <router-link :to="home.path" class="nav__item" tag="li"
+        active-class="actived" exact>
+          <icon class="nav__icon" :iconName="home.icon" />
+          <span class="nav__text">{{home.name}}</span>
+        </router-link>
+        <router-link :to="`${home.path}/${link.path}`" class="nav__item" tag="li"
+        v-for="link in childs" :key="link.path" active-class="actived" exact>
           <icon class="nav__icon" :iconName="link.icon" />
           <span class="nav__text">{{link.name}}</span>
         </router-link>
@@ -26,7 +31,11 @@ export default {
       type: Boolean,
       default: false,
     },
-    links: {
+    home: {
+      type: Object,
+      required: true,
+    },
+    childs: {
       type: Array,
       required: true,
     },

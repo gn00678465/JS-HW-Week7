@@ -8,7 +8,7 @@
           <span>登出</span>
         </a>
       </header>
-      <SideBar ref="sidbar" :links="navLink" />
+      <SideBar ref="sidbar" :home="home" :childs="childs" />
       <router-view style="margin-left: 240px; margin-top: 70px"></router-view>
     </div>
   </div>
@@ -22,30 +22,30 @@ export default {
   components: { SideBar },
   data() {
     return {
-      navLink: [
-        {
-          name: '首頁',
-          path: '/admin',
-          icon: 'dashboard',
-        },
+      home: {
+        name: '首頁',
+        path: '/admin',
+        icon: 'dashboard',
+      },
+      childs: [
         {
           name: '產品列表',
-          path: '/admin/products',
+          path: 'products',
           icon: 'boxes',
         },
         {
           name: '優惠卷',
-          path: '/admin/coupons',
+          path: 'coupons',
           icon: 'percent',
         },
         {
           name: '訂單列表',
-          path: '/admin/orders',
+          path: 'orders',
           icon: 'creditCard',
         },
         {
           name: '檔案管理',
-          path: '/admin/storage',
+          path: 'storage',
           icon: 'storage',
         },
       ],
