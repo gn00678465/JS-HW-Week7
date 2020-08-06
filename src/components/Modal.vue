@@ -11,12 +11,12 @@
         </header>
         <!-- body -->
         <div class="modal__body">
-          <component :is="body"></component>
+          <component ref="form" :is="body" :inputTemp.sync="inputTemp"></component>
         </div>
         <!-- footer -->
         <div class="modal__footer">
-          <BtnGroup class="mr-3" :btns="btnCheck"/>
-          <BtnGroup :btns="cancleBtn" @btnEmit="closeModal"/>
+          <BtnGroup class="mr-3" :btns="btnCheck" @btn-emit="excution"/>
+          <BtnGroup :btns="cancleBtn" @btn-emit="closeModal"/>
         </div>
       </div>
     </div>
@@ -62,14 +62,18 @@ export default {
         },
       ],
       isUplading: false,
+      inputTemp: {
+        imageUrl: [],
+      },
     };
   },
   methods: {
     closeModal() {
       this.ModalShow = false;
     },
-  },
-  computed: {
+    excution(data) {
+      console.log(data);
+    },
   },
 };
 </script>

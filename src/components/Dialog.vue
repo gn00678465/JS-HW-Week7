@@ -3,8 +3,8 @@
     <div class="popup-container">
       <p><slot>Are you sure you want to delete this element?</slot></p>
       <ul class="popup-buttons">
-        <li><a href="#0" @click.prevent="$emit('dialogEmit'); isVisible = false">確定</a></li>
-        <li><a href="#0" @click.prevent="isVisible = false">取消</a></li>
+        <li><a href="#0" @click.prevent="$emit('dialog-emit', true); isVisible = false">確定</a></li>
+        <li><a href="#0" @click.prevent="$emit('dialog-emit', false); isVisible = false">取消</a></li>
       </ul>
       <a href="#0" class="popup-close img-replace" @click.prevent="isVisible = false">Close</a>
     </div>

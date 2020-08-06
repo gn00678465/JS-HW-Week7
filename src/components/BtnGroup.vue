@@ -2,7 +2,7 @@
   <div :class="{'btn-group': isGroup, 'no-border': border}">
     <button type="button" class="btn" v-for="(btn, i) in btns" :key="i"
       :class="`btn${btn.outline ? '-outline' : ''}-${btn.class}`"
-      @click.prevent="$emit('btnEmit', btn.action)"
+      @click.prevent="$emit('btn-emit', btn.action)"
     ><font-awesome-icon :icon="['fas', btn.icon]"
     v-if="btn.content === '' && btn.icon !== ''" />
     <span v-else>{{btn.content}}</span>

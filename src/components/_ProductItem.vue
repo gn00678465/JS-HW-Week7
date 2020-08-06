@@ -12,15 +12,21 @@
       :checked="prod.enabled"/>
     </span>
     <span class="td">
-      <BtnGroup :btns="btns" v-on="$listeners" :border="true" btnSize="md"/>
+      <BtnGroup :btns="btns" @btn-emit="btnClick" :border="true" btnSize="md"/>
     </span>
+    <Dialog ref="dialog" @dialog-emit="confirm">刪除此產品?</Dialog>
+    <Modal ref="modal" size="xl" @dataEmit="updateProd"/>
   </div>
 </template>
 
 <script>
+import ProductsAPI from 'assets/Backend_mixins/Products';
+import Modal from 'components/_ProductModal.vue';
 
 export default {
   name: 'ProductItem',
+  mixins: [ProductsAPI],
+  components: { Modal },
   props: {
     prod: {
       type: Object,
@@ -47,6 +53,29 @@ export default {
         },
       ],
     };
+  },
+  methods: {
+    btnClick(action) {
+      this[`${action}Handler`]();
+    },
+    editHandler() {
+      this.$refs.modal.ModalShow = true;
+      this.$refs.modal.ModalTitle = '編輯產品';
+      this.$refs.modal.body = 'Product';
+      this.$refs.modal.inputTemp = this.prod;
+    },
+    updateProd(data) {
+      this.editProduct(data);
+    },
+    // 刪除商品
+    delHandler() {
+      this.$refs.dialog.isVisible = true;
+    },
+    confirm(check) {
+      if (check) {
+        this.destroyProduct(this.prod.id);
+      }
+    },
   },
 };
 </script>

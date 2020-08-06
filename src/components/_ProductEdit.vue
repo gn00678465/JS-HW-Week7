@@ -1,15 +1,15 @@
 <template>
-  <div class="container-fluid">
+  <ValidationObserver tag="form" @submit="onSubmit">
     <div class="row">
       <div class="col-4">
         <div class="container">
           <div class="row">
             <div class="col-12">
-              <InputField label="圖片網址" rules="required" placeholder="請輸入圖片網址" :attrs="inputSet"
+              <InputField label="圖片網址" :attrs="inputSet"
               v-model="inputTemp.imageUrl[0]"/>
             </div>
             <div class="col-12" v-for="i in imgUrlLength" :key="i">
-              <InputField :label="`圖片網址 - ${i}`"
+              <InputField label="圖片網址" :attrs="inputSet"
               v-model="inputTemp.imageUrl[i]"/>
             </div>
             <hr>
@@ -41,30 +41,28 @@
             </div>
             <div class="col-6">
               <InputField label="原價" :attrs="inputSet"
-              rules="required"
               v-model.number="inputTemp.origin_price"/>
             </div>
             <div class="col-6">
               <InputField label="售價" :attrs="inputSet"
-              rules="required"
               v-model.number="inputTemp.price"/>
             </div>
             <hr>
             <div class="col-12">
               <InputField type="textarea" label="產品描述" :attrs="inputSet"
-              rules="required" v-model="inputTemp.content"/>
+              v-model="inputTemp.content"/>
             </div>
             <div class="col-12">
               <!-- <span class="label">商品說明：</span> -->
               <!-- <vue-editor v-model="inputTemp.description" /> -->
               <InputField type="textarea" label="產品說明" :attrs="inputSet"
-              rules="required" v-model="inputTemp.description"/>
+              v-model="inputTemp.description"/>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
+  </ValidationObserver>
 </template>
 
 <script>
@@ -73,11 +71,12 @@ import InputUpload from 'components/InputUpload.vue';
 export default {
   name: 'ProductEdit',
   components: { InputUpload },
+  created() {
+    this.inputTemp = this.$attrs.inputTemp;
+  },
   data() {
     return {
-      inputTemp: {
-        imageUrl: [],
-      },
+      inputTemp: {},
       inputSet: {
         標題: {
           rules: 'required',
@@ -122,10 +121,14 @@ export default {
       },
     };
   },
-  methods: {},
   computed: {
     imgUrlLength() {
       return this.inputTemp.imageUrl.length <= 3 ? this.inputTemp.imageUrl.length : 3;
+    },
+  },
+  watch: {
+    inputTemp() {
+      this.$emit('update:inputTemp', this.inputTemp);
     },
   },
 };

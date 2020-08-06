@@ -10,7 +10,7 @@
         <div class="dashboard">
           <header class="header">
             <div class="title">產品管理列表</div>
-            <BtnGroup class="newBtn" :btns="btn" @btnEmit="BtnClick"/>
+            <BtnGroup class="newBtn" :btns="btn" @btn-emit="BtnClick"/>
           </header>
           <main class="body">
               <div class="table">
@@ -26,44 +26,38 @@
                   </div>
                 </div>
                 <div v-scrollbar class="table-body">
-                  <item :prod="products[0]" @btnEmit="BtnClick"/>
+                  <item v-for="prod in products" :key="prod.id" :prod="prod"
+                  @btn-emit="BtnClick"/>
                 </div>
               </div>
-            <pagination :total_pages="total" :page="page" />
+            <pagination :total_pages="total" :page.sync="page" />
           </main>
         </div>
       </div>
     </div>
-    <Modal ref="modal" size="xl"/>
-    <Dialog ref="dialog" @dialogEmit="DelProd">刪除此產品?</Dialog>
+    <Modal ref="modal" size="xl" @dataEmit="newProd"/>
   </div>
 </template>
 
 <script>
 import item from 'components/_ProductItem.vue';
 import load from 'components/Loading.vue';
+import Modal from 'components/_ProductModal.vue';
+import ProductsAPI from 'assets/Backend_mixins/Products';
 
 export default {
   name: 'Products',
-  components: { item, load },
+  components: { item, load, Modal },
+  mixins: [ProductsAPI],
+  created() {
+    this.getProductList();
+  },
   data() {
     return {
       isLoading: false,
       page: 1,
-      total: 5,
-      products: [
-        {
-          id: 'fDlXGowjSmGCzGBzxXd6uJ5791dak9gNfaMegywIAfmMqez2V2qcoiSuLrxwyOWp',
-          title: 'Abysswalker',
-          category: 'T-Shirts',
-          content: 'Its wearer, like Artorias himself, can traverse the Abyss.',
-          imageUrl: ['https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1349&q=80'],
-          enabled: true,
-          origin_price: 300,
-          price: 200,
-          unit: '單位',
-        },
-      ],
+      total: 1,
+      products: [],
       btn: [{
         class: 'primary',
         outline: false,
@@ -75,27 +69,23 @@ export default {
     };
   },
   methods: {
-    BtnClick(action) {
-      this[`${action}Handler`]();
+    BtnClick(action, data) {
+      this[`${action}Handler`](data);
     },
     newHandler() {
       this.$refs.modal.ModalShow = true;
       this.$refs.modal.ModalTitle = '新增產品';
       this.$refs.modal.body = 'Product';
     },
-    editHandler() {
-      this.$refs.modal.ModalShow = true;
-      this.$refs.modal.ModalTitle = '編輯產品';
-      this.$refs.modal.body = 'Product';
-    },
-    delHandler() {
-      this.$refs.dialog.isVisible = true;
-    },
-    DelProd() {
-      console.log('DelProd');
+    newProd(data) {
+      this.createProduct(data);
     },
   },
-  computed: {},
+  watch: {
+    page() {
+      this.getProductList(this.page);
+    },
+  },
 };
 </script>
 

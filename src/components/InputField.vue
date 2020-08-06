@@ -5,10 +5,12 @@
       class="form-group"
       v-slot="{ errors, classes }"
     >
+    <!-- input -->
     <label>{{ label }}：</label>
     <input class="form-control" v-if="typeCheck" :type="Attr.type" :placeholder="Attr.placeholder"
-    :name="label" :value="value" @input="$emit('input', $event.target.value)" :class="classes"/>
-    <textarea class="form-control" v-else :name="label" id="" :rows="rows" :class="classes"
+    :name="label" :value="value" @input="$emit('input', $event.target.value)" :class="classes" />
+    <!-- textarea -->
+    <textarea class="form-control" v-else :name="label" :rows="rows" :class="classes"
     :placeholder="Attr.placeholder" :value="value" @input="$emit('input', $event.target.value)">
     </textarea>
     <!-- 錯誤訊息 -->
