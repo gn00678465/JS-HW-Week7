@@ -12,7 +12,7 @@
             <p class="title">後台系統登入</p>
           </div>
           <div class="form-content">
-            <LoginForm @submit="login"/>
+            <LoginForm @submit="submit"/>
           </div>
         </div>
       </div>
@@ -22,9 +22,11 @@
 
 <script>
 import LoginForm from 'components/LoginForm.vue';
+import auth from 'assets/Backend_mixins/Auth';
 
 export default {
   name: 'Login',
+  mixins: [auth],
   components: { LoginForm },
   data() {
     return {
@@ -32,7 +34,9 @@ export default {
     };
   },
   methods: {
-    login() {},
+    submit(data) {
+      this.login(data);
+    },
   },
   computed: {},
 };

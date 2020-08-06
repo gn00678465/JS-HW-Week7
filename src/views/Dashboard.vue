@@ -1,9 +1,12 @@
 <template>
-  <div class="container-fluid bg-color">
+  <div class="container-fluid bg-color vld-parent">
+    <loading :active.sync="isLoading"
+      :can-cancel="true"
+      :is-full-page="true"></loading>
     <div class="row">
       <header class="header expander-left" style="margin-left: 240px">
         <p class="title">後台管理系統</p>
-        <a class="btn btn-logout">
+        <a class="btn btn-logout" @click.prevent="logout">
           <icon class="btn-icon" iconName="exit" />
           <span>登出</span>
         </a>
@@ -16,9 +19,11 @@
 
 <script>
 import SideBar from 'components/SideBar.vue';
+import auth from 'assets/Backend_mixins/Auth';
 
 export default {
   name: 'Dashboard',
+  mixins: [auth],
   components: { SideBar },
   data() {
     return {
@@ -49,10 +54,14 @@ export default {
           icon: 'storage',
         },
       ],
+      token: '',
+      isLoading: false,
     };
   },
-  methods: {},
-  computed: {},
+  created() {
+    this.token = this.getToken();
+    this.tokenCheck();
+  },
 };
 </script>
 
