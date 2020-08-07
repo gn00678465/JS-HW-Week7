@@ -15,7 +15,7 @@
       <BtnGroup :btns="btns" @btn-emit="BtnClick" :border="true" btnSize="md"/>
     </span>
     <Modal ref="modal" @modalEmit="edit"/>
-    <Dialog ref="dialog" @dialog-emit="confirm">刪除此優惠卷?</Dialog>
+    <Dialog ref="dialog" @dialog="confirm">刪除此優惠卷?</Dialog>
   </div>
 </template>
 
@@ -75,10 +75,8 @@ export default {
     delHandler() {
       this.$refs.dialog.isVisible = true;
     },
-    confirm(check) {
-      if (check) {
-        this.destroyCoupon(this.coupon.id);
-      }
+    confirm() {
+      this.destroyCoupon(this.coupon.id);
     },
   },
 };

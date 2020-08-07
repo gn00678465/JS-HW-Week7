@@ -87,7 +87,7 @@ $gutters: 24px;
   bottom: 0;
   left: 0;
   right: 0;
-  background-image: url('./../../assets/image/login.jpg');
+  background-image: url('../../../public/login.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;

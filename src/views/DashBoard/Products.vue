@@ -41,15 +41,17 @@
 
 <script>
 import item from 'components/_ProductItem.vue';
-import Modal from 'components/_ProductModal.vue';
 import ProductsAPI from 'assets/Backend_mixins/Products';
 
 export default {
   name: 'Products',
-  components: { item, Modal },
+  components: {
+    item,
+    Modal: () => import('components/_ProductModal.vue'),
+  },
   mixins: [ProductsAPI],
   created() {
-    this.getProductList();
+    this.getProductList(this.page);
   },
   data() {
     return {
@@ -74,7 +76,6 @@ export default {
     newHandler() {
       this.$refs.modal.ModalShow = true;
       this.$refs.modal.ModalTitle = '新增產品';
-      this.$refs.modal.body = 'Product';
     },
     newProd(data) {
       this.createProduct(data);

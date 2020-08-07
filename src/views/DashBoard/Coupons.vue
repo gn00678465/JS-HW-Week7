@@ -40,13 +40,15 @@
 
 <script>
 import item from 'components/_CouponItem.vue';
-import Modal from 'components/_CouponModal.vue';
 import CouponAPI from 'assets/Backend_mixins/Coupons';
 
 export default {
   name: 'Coupons',
   mixins: [CouponAPI],
-  components: { item, Modal },
+  components: {
+    item,
+    Modal: () => import('components/_CouponModal.vue'),
+  },
   data() {
     return {
       isLoading: false,
