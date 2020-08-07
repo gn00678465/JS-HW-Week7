@@ -12,7 +12,7 @@
         <!-- body -->
         <div class="modal__body">
           <!-- inputs -->
-            <ValidationObserver tag="form" ref="form">
+            <ValidationObserver class="container-fluid" tag="form" ref="form">
               <div class="row">
                 <div class="col-4">
                   <div class="container">
@@ -79,7 +79,7 @@
         </div>
         <!-- footer -->
         <div class="modal__footer">
-          <BtnGroup class="mr-3" :btns="btnCheck" @btn-emit="excution"/>
+          <BtnGroup class="mr-3" :btns="btnCheck" @btn-emit="validate"/>
           <BtnGroup :btns="cancleBtn" @btn-emit="closeModal"/>
         </div>
       </div>
@@ -183,7 +183,7 @@ export default {
       this.inputTemp = {};
       this.$set(this.inputTemp, 'imageUrl', []);
     },
-    excution() {
+    validate() {
       this.$refs.form.validate()
         .then((success) => {
           if (success) {

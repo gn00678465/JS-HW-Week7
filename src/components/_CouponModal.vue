@@ -7,15 +7,43 @@
           <slot name="header">
             {{ ModalTitle }}
           </slot>
-          <span class="times" @click.prevent="closeModal">&times;</span>
+          <div class="times" @click.prevent="closeModal">&times;</div>
         </header>
         <!-- body -->
         <div class="modal__body">
-          <component ref="form" :is="body" :inputTemp.sync="inputTemp"></component>
+          <ValidationObserver class="container-fluid" tag="form" ref="form">
+            <div class="row">
+              <div class="col-12">
+                <InputField label="優惠卷名稱" :attrs="inputSet"
+                  v-model="inputTemp.title"/>
+              </div>
+              <div class="col-12">
+                <InputField label="優惠碼" :attrs="inputSet"
+                  v-model="inputTemp.code"/>
+              </div>
+              <div class="col-12">
+                <InputField label="折扣" :attrs="inputSet"
+                  v-model="inputTemp.percent"/>
+              </div>
+              <div class="col-6">
+                <InputField label="到期日" :attrs="inputSet"
+                  v-model="due_date"/>
+              </div>
+              <div class="col-6">
+                <InputField label="到期時間" :attrs="inputSet"
+                  v-model="due_time"/>
+              </div>
+              <div class="col-12">
+                <span class="label toggle">是否啟用</span>
+                <toggle prodId="isEnable" :checked="inputTemp.enabled"
+                v-model="inputTemp.enabled"/>
+              </div>
+            </div>
+          </ValidationObserver>
         </div>
         <!-- footer -->
         <div class="modal__footer">
-          <BtnGroup class="mr-3" :btns="btnCheck" @btn-emit="excution"/>
+          <BtnGroup class="mr-3" :btns="btnCheck" @btn-emit="validate"/>
           <BtnGroup :btns="cancleBtn" @btn-emit="closeModal"/>
         </div>
       </div>
@@ -24,12 +52,11 @@
 </template>
 
 <script>
-import file from 'components/InputUpload.vue';
 
 export default {
-  name: 'Modal',
+  name: 'CouponModal',
   mixins: [],
-  components: { file },
+  components: { },
   props: {
     size: {
       type: String,
@@ -40,7 +67,33 @@ export default {
     return {
       ModalShow: false,
       ModalTitle: '',
-      body: '',
+      inputSet: {
+        優惠卷名稱: {
+          rules: 'required',
+          placeholder: '請輸入優惠卷名稱',
+          type: 'text',
+        },
+        優惠碼: {
+          rules: 'required',
+          placeholder: '請輸入優惠碼',
+          type: 'text',
+        },
+        折扣: {
+          rules: 'required|integer|max_value:99|min_value:1',
+          placeholder: '請輸入折扣',
+          type: 'Number',
+        },
+        到期日: {
+          rules: 'required',
+          placeholder: '請輸入到期日',
+          type: 'date',
+        },
+        到期時間: {
+          rules: 'required',
+          placeholder: '請輸入到期時間',
+          type: 'time',
+        },
+      },
       btnCheck: [
         {
           class: 'primary',
@@ -60,17 +113,31 @@ export default {
         },
       ],
       isUplading: false,
-      inputTemp: {
-        imageUrl: [],
-      },
+      inputTemp: {},
+      due_date: '',
+      due_time: '',
     };
   },
   methods: {
     closeModal() {
       this.ModalShow = false;
+      this.inputTemp = {};
     },
-    excution(data) {
-      console.log(data);
+    validate() {
+      this.$refs.form.validate()
+        .then((success) => {
+          if (success) {
+            this.inputTemp.deadline_at = this.deadline;
+            this.$emit('modalEmit', this.inputTemp);
+            this.closeModal();
+          }
+        });
+    },
+  },
+  computed: {
+    deadline() {
+      const newTime = this.due_time.length !== 8 ? `${this.due_time}:00` : this.due_time;
+      return `${this.due_date} ${newTime}`;
     },
   },
 };

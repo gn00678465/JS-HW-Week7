@@ -7,7 +7,7 @@ function resolve(dir) {
 module.exports = {
   // publicPath
   publicPath: process.env.NODE_ENV === 'production'
-    ? '/JS-HomeWork-Week7/'
+    ? '/JS-HW-Week7/'
     : '/',
   // scss variable
   css: {

@@ -3,7 +3,7 @@
     <loading :active.sync="isLoading"
       :can-cancel="true" background-color="#555"
       :is-full-page="true">
-        <load slot="default"/>
+        <LoadEffect slot="default"/>
       </loading>
     <div class="row">
       <div class="col">
@@ -41,13 +41,12 @@
 
 <script>
 import item from 'components/_ProductItem.vue';
-import load from 'components/Loading.vue';
 import Modal from 'components/_ProductModal.vue';
 import ProductsAPI from 'assets/Backend_mixins/Products';
 
 export default {
   name: 'Products',
-  components: { item, load, Modal },
+  components: { item, Modal },
   mixins: [ProductsAPI],
   created() {
     this.getProductList();
