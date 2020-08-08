@@ -37,6 +37,9 @@ import OrderAPI from 'assets/Backend_mixins/Orders';
 import Item from 'components/_OrderItem.vue';
 
 export default {
+  mataInfo: {
+    title: '-訂單管理',
+  },
   name: 'Orders',
   mixins: [OrderAPI],
   components: { Item },

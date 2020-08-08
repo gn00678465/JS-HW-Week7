@@ -44,6 +44,9 @@ import item from 'components/_ProductItem.vue';
 import ProductsAPI from 'assets/Backend_mixins/Products';
 
 export default {
+  mataInfo: {
+    title: '-產品管理',
+  },
   name: 'Products',
   components: {
     item,

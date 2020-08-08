@@ -25,6 +25,9 @@ import LoginForm from 'components/LoginForm.vue';
 import auth from 'assets/Backend_mixins/Auth';
 
 export default {
+  metaInfo: {
+    title: '後台登入',
+  },
   name: 'Login',
   mixins: [auth],
   components: { LoginForm },

@@ -47,6 +47,9 @@ import file from 'components/InputUpload.vue';
 import ImgCard from 'components/ImgCard.vue';
 
 export default {
+  mataInfo: {
+    title: '-檔案管理',
+  },
   name: 'Storage',
   components: {
     uploading: () => import('components/LoadingUpload.vue'),

@@ -22,6 +22,10 @@ import SideBar from 'components/SideBar.vue';
 import auth from 'assets/Backend_mixins/Auth';
 
 export default {
+  metaInfo: {
+    title: '後台管理系統',
+    titleTemplate: '%s',
+  },
   name: 'Dashboard',
   mixins: [auth],
   components: { SideBar },
