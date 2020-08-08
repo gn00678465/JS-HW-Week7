@@ -77,12 +77,12 @@ $secondary-color: #1d1f20;
 .pagination {
   display: inline-block;
   text-align: center;
-  padding: 1rem;
+  padding-top: 1rem;
 }
 .pagination-center {
   display: block;
   text-align: center;
-  padding: 1rem;
+  padding-top: 1rem;
 }
 .pagination-bg {
   background: lighten($main-color, 5%);
