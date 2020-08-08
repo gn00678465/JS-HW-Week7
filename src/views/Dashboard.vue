@@ -4,7 +4,7 @@
       :can-cancel="true"
       :is-full-page="true"></loading>
     <div class="row">
-      <header class="header expander-left" style="margin-left: 240px">
+      <header class="header expander-left" :style="{'margin-left': sidbarWidth}">
         <p class="title">後台管理系統</p>
         <a class="btn btn-logout" @click.prevent="logout">
           <icon class="btn-icon" iconName="exit" />
@@ -12,7 +12,7 @@
         </a>
       </header>
       <SideBar ref="sidbar" :home="home" :childs="childs" />
-      <router-view style="margin-left: 240px; margin-top: 70px"></router-view>
+      <router-view :style="{'margin-left': sidbarWidth, 'margin-top': navbarHeight}"></router-view>
     </div>
   </div>
 </template>
@@ -60,11 +60,27 @@ export default {
       ],
       token: '',
       isLoading: false,
+      sidbarWidth: 0,
+      navbarHeight: 0,
     };
   },
   created() {
     this.token = this.getToken();
     this.tokenCheck();
+  },
+  mounted() {
+    this.getSidebarWidth();
+    this.getNavHeight();
+  },
+  methods: {
+    getSidebarWidth() {
+      const { width } = this.$refs.sidbar.$el.getBoundingClientRect();
+      this.sidbarWidth = `${width + 15}px`;
+    },
+    getNavHeight() {
+      const { height } = this.$el.querySelector('.header').getBoundingClientRect();
+      this.navbarHeight = `${height}px`;
+    },
   },
 };
 </script>
