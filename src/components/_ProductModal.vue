@@ -26,7 +26,12 @@
                         v-model="inputTemp.imageUrl[i]"/>
                       </div>
                       <hr>
-                      <div class="col-12">
+                      <div class="col-12 vld-parent">
+                        <loading :active.sync="isUplading"
+                          :can-cancel="true"
+                          :is-full-page="false">
+                          <uploading slot="default"/>
+                        </loading>
                         <InputUpload ref="file" @uploadSubmit="upload"/>
                       </div>
                     </div>
@@ -93,7 +98,10 @@ import StorageAPI from 'assets/Backend_mixins/Storage';
 
 export default {
   name: 'ProductModal',
-  components: { InputUpload },
+  components: {
+    InputUpload,
+    uploading: () => import('components/LoadingUpload.vue'),
+  },
   mixins: [StorageAPI],
   props: {
     size: {

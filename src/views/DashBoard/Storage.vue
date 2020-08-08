@@ -15,13 +15,14 @@
             <div class="container-fluid">
               <div class="row">
                 <div class="col">
-                  <div v-scrollbar class="container-fluid" style="height: 600px">
+                  <div v-scrollbar class="container-fluid" style="height: 650px">
                     <div class="row">
                       <div class="col-4" v-for="item in storageList" :key="item.id">
                         <ImgCard :path="item.path" :id="item.id"/>
                       </div>
                     </div>
                   </div>
+                  <pagination :total_pages="total" :page.sync="page" />
                 </div>
                 <div class="col-4">
                   <loading :active.sync="isUplading"
@@ -33,7 +34,6 @@
                 </div>
               </div>
             </div>
-            <pagination :total_pages="total" :page.sync="page" />
           </main>
         </div>
       </div>
