@@ -11,7 +11,7 @@
         </header>
         <!-- body -->
         <div class="modal__body">
-          <component ref="form" :is="body" :inputTemp.sync="inputTemp"></component>
+          <component ref="form" :is="body"></component>
         </div>
         <!-- footer -->
         <div class="modal__footer">

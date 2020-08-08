@@ -27,7 +27,7 @@
                       </div>
                       <hr>
                       <div class="col-12">
-                        <InputUpload ref="file"/>
+                        <InputUpload ref="file" @uploadSubmit="upload"/>
                       </div>
                     </div>
                   </div>
@@ -89,10 +89,12 @@
 
 <script>
 import InputUpload from 'components/InputUpload.vue';
+import StorageAPI from 'assets/Backend_mixins/Storage';
 
 export default {
   name: 'ProductModal',
   components: { InputUpload },
+  mixins: [StorageAPI],
   props: {
     size: {
       type: String,
@@ -190,6 +192,13 @@ export default {
             this.$emit('dataEmit', this.inputTemp);
             this.closeModal();
           }
+        });
+    },
+    upload(formdata) {
+      this.editStorage(formdata)
+        .then((path) => {
+          this.$refs.file.src = '';
+          this.inputTemp.imageUrl.push(path);
         });
     },
   },
